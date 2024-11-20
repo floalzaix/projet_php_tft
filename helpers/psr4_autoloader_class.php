@@ -180,7 +180,6 @@ class Psr4AutoloaderClass
      */
     protected function requireFile($file)
     {
-
         if (file_exists($file)) {
             require $file;
             return true;

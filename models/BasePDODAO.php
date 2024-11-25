@@ -16,8 +16,9 @@ class BasePDODAO {
     }
 
     protected function execRequest(string $sql, array $params = null) : bool|PDOStatement {
-        $this->db = $this->getDB();
+        $this->getDB();
         $query = $this->db->prepare($sql);
-        return $query->execute($params);
+        $query->execute($params);
+        return $query; //Consigne bizarre sur le TP à verifier.
     }
 }

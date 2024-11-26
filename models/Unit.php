@@ -17,6 +17,14 @@ class Unit {
         $this->url_img = $url_img;
     }
 
+    //toString
+    public function __toString(): string {
+        echo "<div id=\"unit\" style=\"background-image: url(\"{$this->getUrlImg()}\")\">";
+            echo $this->getUrlImg();
+        echo "</div>";
+        return "Ceci est l'affichage de l'unité : ".$this->name;
+    }
+
     //Getters and setters
     public function getId(): ?string {
         return $this->id;

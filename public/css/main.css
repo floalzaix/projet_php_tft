@@ -6,50 +6,112 @@
 
 
 .unit {
-    color: red;
+    color: white;
 
     width: 200px;
     height: 130px;
 
-    margin: 2%;
+    margin: 0%;
 }
 
 [class^="rar_"] {
-    --padding: 5%;
+    --padding: 3.5%;
+    --border-width: 3px;
 
     background-size: cover;
 
     display: grid;
     grid-template-areas:
-        "name ."
+        "name btn"
         "origins cost";
 
     align-items: end;
 
-    width: calc(100% - 2*var(--padding));
-    height: calc(100% - 3*var(--padding));
+    width: calc(100% - 2*var(--padding) - 2*var(--border-width));
+    height: calc(100% - 3*var(--padding) - 2*var(--border-width));
 
     padding: var(--padding);
 
-    border-width: 4px;
-    border-radius: 10px;
+    border-width: var(--border-width);
+    border-radius: 12px;
     border-style: solid;
 }
 
-.rar_0 {
+.rar_1 {
     border-color: rgb(223, 223, 223);
+}
+.rar_2 {
+    border-color: rgb(5, 141, 0);
+}
+.rar_3 {
+    border-color: rgb(1, 4, 228);
+}
+.rar_4 {
+    border-color: rgb(176, 0, 199);
+}
+.rar_5 {
+    border-color: rgb(241, 166, 2);
 }
 
 .name {
     grid-area: name;
     align-self: start;
+
+    font: bold 1.4em "Copperplate", "Copperplate Gothic", "Garamont", serif;
 }
 
 .origins {
     grid-area: origins;
+
+    font: italic 1em "Copperplate", "Copperplate Gothic", "Garamont", serif;
+}
+
+.origin {
+    margin-left: 2%;
 }
 
 .cost {
     grid-area: cost;
     text-align: right;
+
+    font: bold 1.1em "Copperplate", "Copperplate Gothic", "Garamont", serif;
+
+    margin-left: 2%;
+}
+
+.btn_unit {
+    grid-area: btn;
+    align-self: start;
+
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn_ico {
+    width: 100%;
+    height: 100%;
+}
+
+.cost_ico {
+    width: 11px;
+    height: 11px;
+}
+
+.btn_small {
+    all: unset;
+
+    width: 20px;
+    height: 20px;
+    
+    border-radius: 100%;
+
+    padding: 4%;
+}
+
+.btn_small:hover {
+    scale: 115%;
+}
+
+.btn_small:active {
+    scale: 60%;
 }

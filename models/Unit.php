@@ -36,7 +36,24 @@ class Unit {
                     }
                 echo "</div>";
 
-                echo "<div class=\"cost\">".$this->cost."</div>";
+                echo "<div class=\"cost\">";
+                    echo "<img src=\"../public/images/pieces.png\" alt=\"Modifier\" class=\"cost_ico\" />";
+                    echo $this->cost;
+                echo "</div>";
+
+                if (isset($_SERVER["PHP_SELF"])) {
+                    echo "<form class=\"btn_unit\" \"action=\"".basename($_SERVER["PHP_SELF"])."\" method=\"post\">";
+
+                        echo "<button type=\"submit\" id=\"btn_modif_unit\" class=\"btn_small\" name=\"btn_modif_unit\">";
+                            echo "<img src=\"../public/images/crayon.png\" alt=\"Modifier\" class=\"btn_ico\" />";
+                        echo "</button>";
+
+                        echo "<button type=\"submit\" id=\"btn_delete_unit\" class=\"btn_small\" name=\"btn_modif_unit\" />";
+                            echo "<img src=\"../public/images/supprimer.png\" alt=\"Modifier\" class=\"btn_ico\" />";
+                        echo "</button>";
+
+                    echo "</form>";
+                }
             echo "</div>";
 
         echo "</div>";

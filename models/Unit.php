@@ -42,17 +42,27 @@ class Unit {
                 echo "</div>";
 
                 if (isset($_SERVER["PHP_SELF"])) {
-                    echo "<form class=\"btn_unit\" \"action=\"".basename($_SERVER["PHP_SELF"])."\" method=\"post\">";
+                    echo "<div class=\"btn_unit\">";
 
-                        echo "<button type=\"submit\" id=\"btn_modif_unit\" class=\"btn_small\" name=\"btn_modif_unit\">";
-                            echo "<img src=\"../public/images/crayon.png\" alt=\"Modifier\" class=\"btn_ico\" />";
-                        echo "</button>";
+                        echo "<form class=\"btn_small\" action=\"".basename($_SERVER["PHP_SELF"])."\" method=\"GET\">";
+                            echo "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"edit-unit\" />";
+                            echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"{$this->getId()}\" />";
 
-                        echo "<button type=\"submit\" id=\"btn_delete_unit\" class=\"btn_small\" name=\"btn_modif_unit\" />";
-                            echo "<img src=\"../public/images/supprimer.png\" alt=\"Modifier\" class=\"btn_ico\" />";
-                        echo "</button>";
+                            echo "<button type=\"submit\" id=\"btn_modif_unit\" class=\"btn_small\">";
+                                echo "<img src=\"../public/images/crayon.png\" alt=\"Modifier\" class=\"btn_ico\" />";
+                            echo "</button>";
+                        echo "</form>";
 
-                    echo "</form>";
+                        echo "<form class=\"btn_small\" action=\"".basename($_SERVER["PHP_SELF"])."\" method=\"GET\">";
+                            echo "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"del-unit\" />";
+                            echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"{$this->getId()}\" />";
+
+                            echo "<button type=\"submit\" id=\"btn_delete_unit\" class=\"btn_small\">";
+                                echo "<img src=\"../public/images/supprimer.png\" alt=\"Modifier\" class=\"btn_ico\" />";
+                            echo "</button>";
+                        echo "</form>";
+
+                    echo "</div>";
                 }
             echo "</div>";
 

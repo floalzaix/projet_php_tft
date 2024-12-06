@@ -19,6 +19,10 @@ class MainController {
         $other = $this->unit_dao->getById("blabla2");
         echo $this->templates->render("home", ["tft_set_name" => "Remix Rumble", "list_units" => $list_units, "first" => $first, "other" => $other]);
     }
+
+    public function displaySearch() : void {
+        echo $this->templates->render("search");
+    }
 }
 
 ?>

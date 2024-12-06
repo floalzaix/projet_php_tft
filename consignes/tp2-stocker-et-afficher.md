@@ -40,7 +40,7 @@ Celle-ci pourrait charger les informations à l'aide d'un fichier de configurati
 
 Pour vous aiguiller, regarder la doc de la fonction `parse_ini_file`.
 
-Voici un exemple de classe `Config` à mettre dans le dossier `📂Config`. Le fichier peut être modifier si besoin
+Voici un exemple de classe `Config` à mettre dans le dossier `Config`. Le fichier peut être modifier si besoin
 
 ```php
 namespace Config;
@@ -115,7 +115,7 @@ Puis, elle retournera simplement l'attribut `$db`. N'hésitez à vous référer 
 C'est ici que vous utiliserez `Config`.
 
 Pour la fonction `execRequest`, celle-ci à pour objectif d'exécuter la requête `$sql` passée en paramètre. 
-Elle pourra être préparée et exécutée avec les `$params` s'ils existent (👀 `$params` à une valeur par défaut). 
+Elle pourra être préparée et exécutée avec les `$params` s'ils existent ( `$params` à une valeur par défaut). 
 Notre fonction retournera le résultat de la fonction `execute` de __PDO__ (qui est un *PDOStatement*).
 
 Un peu d'aide => Voici un exemple de paramètre que notre fonction pourrait recevoir :
@@ -167,9 +167,6 @@ Et pour finir passez les à votre vue `Index` générée et réalisez un `var_du
 Vous devriez avoir une liste de `Unit`, une `Unit`, et `null` si tout s'est déroulé correctement 
 (dans un format d'affichage moche au possible ;) ).
 
-```text
-Pour que la vue accède à une $var, n'oubliez pas de lui passer dans la fonction render(["var" => "$var", ...])
-```
 
 Code `home.php`
 
@@ -183,7 +180,6 @@ Code `home.php`
 
 Affichage Moche :
 
-![var_dumps](./img/var_dumps.PNG)
 
 ## 3 - Coté design
 
@@ -200,11 +196,6 @@ Ces derniers permettront de modifier ou supprimer une unité !
 
 ### Exemple css design
 
-![Example index](./img/example_art.PNG)
-
-### Exemple avec un tableau Materialize (Données non contractuelles)
-
-![Example index](./img/example_tab.PNG)
 
 
 Bien joué si vous êtes toujours en vie jusqu'ici :D

@@ -12,9 +12,9 @@
             <nav>
                 <ul>
                     <li><a href="index.php">Home</a></li>
-                    <li><a href="index.php" action="add-unit">Ajouter une unité</a></li>
-                    <li><a href="index.php" action="add-unit-origin">Ajouter une origine</a></li>
-                    <li><a href="index.php" action="search">Rechercher</a></li>
+                    <li><a href="index.php?action=add-unit">Ajouter une unité</a></li>
+                    <li><a href="index.php?action=add-unit-origin">Ajouter une origine</a></li>
+                    <li><a href="index.php?action=search">Rechercher</a></li>
                 </ul>
             </nav>
         </header>

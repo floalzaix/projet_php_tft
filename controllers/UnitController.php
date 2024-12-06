@@ -14,6 +14,10 @@ class UnitController {
     public function displayAddUnit() : void {
         echo $this->templates->render("add-unit");
     }
+
+    public function displayAddUnitOrigin() : void {
+        echo $this->templates->render("add-origin");
+    }
 }
 
 ?>

@@ -4,8 +4,13 @@ namespace Controllers\Router;
 
 use Controllers\MainController;
 use Controllers\Router\Route\RouteAddUnit;
+use Controllers\Router\Route\RouteEr404;
 use Controllers\Router\Route\RouteIndex;
+use Controllers\Router\Route\RouteAddOrigin;
+use Controllers\Router\Route\RouteSearch;
 use Controllers\UnitController;
+use Controllers\ErrorController;
+use Exception;
 
 class Router {
     private Array $route_list,  $ctrl_list;
@@ -19,21 +24,34 @@ class Router {
 
     private function createControllerList() : void {
         $this->ctrl_list = ["main" => new MainController(), 
-                             "unit" => new UnitController()];
+                             "unit" => new UnitController(),
+                             "error" => new ErrorController()];
     }
 
     private function createRouteList() : void {
         $this->route_list = ["index"=> new RouteIndex($this->ctrl_list["main"]),
-                             "add-unit" => new RouteAddUnit($this->ctrl_list["unit"])];
+                             "add-unit" => new RouteAddUnit($this->ctrl_list["unit"]),
+                             "add-unit-origin" => new RouteAddOrigin($this->ctrl_list["unit"]),
+                             "search" => new RouteSearch($this->ctrl_list["unit"]),
+                             "er-404" => new RouteEr404($this->ctrl_list["error"])];
+    }
+
+    private function getParam(array $array, string $paramName, bool $canBeEmpty = true) : mixed {
+        if (isset($array[$paramName])) {
+            if(!$canBeEmpty && empty($array[$paramName]))
+                throw new Exception("Paramètre '$paramName' vide");
+            return $array[$paramName];
+        } else
+            return $array["er-404"];
     }
 
     public function routing($get=[], $post=[]) : void {
         if (isset($get[$this->action_key]) || isset($post[$this->action_key])) {
-            if (isset($post)) {
-                $this->route_list[$get[$this->action_key]]->action("POST");
+            if (!empty($post)) {
+                $this->getParam($this->route_list, $post[$this->action_key])->action();
             } else {
-                $this->route_list[$get[$this->action_key]]->action();
-            } 
+                $this->getParam($this->route_list, $get[$this->action_key])->action();
+            }
         } else {
             $this->route_list["index"]->action();
         }

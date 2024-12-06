@@ -18,6 +18,6 @@ $router = new Router();
 /*$main_controller = new Controllers\MainController();
 $main_controller->index();*/
 
-$router->routing();
+$router->routing($_GET);
 
 ?>

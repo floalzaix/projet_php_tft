@@ -24,8 +24,8 @@ class Router {
 
     private function createControllerList() : void {
         $this->ctrl_list = ["main" => new MainController(), 
-                             "unit" => new UnitController(),
-                             "error" => new ErrorController()];
+                            "unit" => new UnitController(),
+                            "error" => new ErrorController()];
     }
 
     private function createRouteList() : void {
@@ -41,21 +41,33 @@ class Router {
             if(!$canBeEmpty && empty($array[$paramName]))
                 throw new Exception("Paramètre '$paramName' vide");
             return $array[$paramName];
-        } else
+        } else {
             return $array["er-404"];
+        }
     }
 
     public function routing($get=[], $post=[]) : void {
         if (isset($get[$this->action_key]) || isset($post[$this->action_key])) {
             if (!empty($post)) {
-                $this->getParam($this->route_list, $post[$this->action_key])->action();
+                $route = $this->getParam($this->route_list, $post[$this->action_key]);
+                $route->action([], "POST");
             } else {
-                $this->getParam($this->route_list, $get[$this->action_key])->action();
+                $route = $this->getParam($this->route_list, $get[$this->action_key]);
+                if ($get[$this->action_key] == "del-unit") { //delete à priori ...
+                    $route = $this->route_list["index"];
+                    $route->action(["del_unit" => true]);
+                } elseif ($get[$this->action_key] == "edit-unit") { //edit-unit ou update ...
+                    $route = $this->route_list["add-unit"];
+                    $route->action(isset($get["id"]) ? $get["id"] : []);
+                } else {
+                    $route->action();
+                }
             }
         } else {
             $this->route_list["index"]->action();
         }
     }
+
 }
 
 ?>

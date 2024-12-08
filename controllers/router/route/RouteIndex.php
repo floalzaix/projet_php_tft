@@ -12,7 +12,11 @@ class RouteIndex extends Route {
     }
 
     public function get($params = []) : void {
-        $this->controller->index();
+        if (isset($params["del_unit"]) && $params["del_unit"] == true) {
+            $this->controller->index(true);
+        } else {
+            $this->controller->index();
+        }
     }
 
     public function post($params = []) : void {

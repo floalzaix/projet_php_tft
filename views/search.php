@@ -1,5 +1,23 @@
 <?php
+    use Models\Unit;
+
     $this->layout('template', ['title' => 'TP TFT']);
+
+    $model = new Unit("exemple", "1", "origin", "url_img");
+    $props = (new ReflectionClass($model))->getProperties();
 ?>
 
-<h1>search</h1>
+<h1>Recherche</h1>
+
+<form method="POST" action="">
+    <input type="text" id="search_field" name="search" placeholder="Recherche ..." />
+    <select id="search_select" name="search_select">
+        <option value="">Champs</option>
+        <?php
+            foreach ($props as $prop) {
+                echo "<option value=''" . $prop->getName() . "'>" . $prop->getName() . "</option>";
+            }
+
+        ?>
+    </select>
+</form>

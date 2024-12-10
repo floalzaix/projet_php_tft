@@ -13,7 +13,7 @@ use Controllers\ErrorController;
 use Exception;
 
 class Router {
-    private Array $route_list,  $ctrl_list;
+    private $route_list,  $ctrl_list;
     private String $action_key;
 
     public function __construct($name_of_action_key = "action") {
@@ -36,7 +36,7 @@ class Router {
                              "er-404" => new RouteEr404($this->ctrl_list["error"])];
     }
 
-    private function getParam(array $array, string $paramName, bool $canBeEmpty = true) : mixed {
+    private function getRoute(array $array, string $paramName, bool $canBeEmpty = true) : mixed {
         if (isset($array[$paramName])) {
             if(!$canBeEmpty && empty($array[$paramName]))
                 throw new Exception("Paramètre '$paramName' vide");
@@ -47,21 +47,22 @@ class Router {
     }
 
     public function routing($get=[], $post=[]) : void {
-        if (isset($get[$this->action_key]) || isset($post[$this->action_key])) {
+        if (isset($get[$this->action_key])) {
+            $method = "GET";
             if (!empty($post)) {
-                $route = $this->getParam($this->route_list, $post[$this->action_key]);
-                $route->action([], "POST");
+                $method = "POST";
+            }
+
+            $route = $this->getRoute($this->route_list, $get[$this->action_key]);
+
+            if ($get[$this->action_key] == "del-unit") { //delete à priori ...
+                $route = $this->route_list["index"];
+                $route->action(["del_unit" => true], $method);
+            } elseif ($get[$this->action_key] == "edit-unit") { //edit-unit ou update ...
+                $route = $this->route_list["add-unit"];
+                $route->action(["id" => $get["id"]] ?? [], $method);
             } else {
-                $route = $this->getParam($this->route_list, $get[$this->action_key]);
-                if ($get[$this->action_key] == "del-unit") { //delete à priori ...
-                    $route = $this->route_list["index"];
-                    $route->action(["del_unit" => true]);
-                } elseif ($get[$this->action_key] == "edit-unit") { //edit-unit ou update ...
-                    $route = $this->route_list["add-unit"];
-                    $route->action(isset($get["id"]) ? $get["id"] : []);
-                } else {
-                    $route->action();
-                }
+                $route->action($post, $method);
             }
         } else {
             $this->route_list["index"]->action();

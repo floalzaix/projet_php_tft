@@ -9,6 +9,7 @@ $this->layout('template', ['title' => 'TP TFT']);
 
 
 
+<!--
 <?php
 
 foreach($list_units as $unit) {
@@ -16,7 +17,6 @@ foreach($list_units as $unit) {
 }
 
 ?>
-<!--
 
 <?php var_dump($list_units); ?>
 <br />

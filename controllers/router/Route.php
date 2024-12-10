@@ -15,6 +15,16 @@ abstract class Route {
         }
     }
 
+    protected function getParam(array $array, string $paramName, bool $canBeEmpty = true) : mixed {
+        if (isset($array[$paramName])) {
+            if(!$canBeEmpty && empty($array[$paramName]))
+                throw new Exception("Le paramètre ".$paramName." est vide");
+            return $array[$paramName];
+        } else {
+            throw new Exception("Le paramètre ".$paramName." n'est pas définit");
+        }
+    }
+
     public abstract function get($params =[]) : void;
     public abstract function post($params =[]) : void;
 }

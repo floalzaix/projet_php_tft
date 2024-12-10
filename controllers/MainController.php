@@ -13,14 +13,27 @@ class MainController {
         $this->templates = new Engine("views", "php");
         $this->unit_dao = new UnitDAO();
     }
-    public function index($del_unit=false) : void {
+
+    public function delUnit(string $id) : void {
+        $this->unit_dao->deleteUnit($id);
+    }
+
+    public function index($del_unit=false, ?string $id = null, ?string $message = null) : void {
         $list_units = $this->unit_dao->getAll();
-        $first = $this->unit_dao->getById("blabla");
-        $other = $this->unit_dao->getById("blabla2");
         if ($del_unit) {
-            echo $this->templates->render("home", ["tft_set_name" => "Remix Rumble", "message" => "Etes vous sur de vouloir supprimer cette unité ?","list_units" => $list_units, "first" => $first, "other" => $other]);
+            if (!isset($message)) {
+                $message = "
+                    <form action='index.php' method='POST'>
+                        <input type='hidden' id='id' name='id' value='{$id}' />
+                        <p>Etes-vous sur de vouloir supprimer l'unité</p>
+                        <input type='submit' id='submit_button' name='confirm_button' value='Confirmer' />
+                        <input type='submit' id='submit_button' name='cancel_button' value='Annuler' />
+                    </form> 
+                ";
+            }
+            echo $this->templates->render("home", ["tft_set_name" => "Remix Rumble", "message" => $message, "list_units" => $list_units]);
         } else {
-            echo $this->templates->render("home", ["tft_set_name" => "Remix Rumble", "list_units" => $list_units, "first" => $first, "other" => $other]);
+            echo $this->templates->render("home", ["tft_set_name" => "Remix Rumble", "list_units" => $list_units]);
         }
     }
 

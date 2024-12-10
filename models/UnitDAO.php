@@ -35,6 +35,10 @@ class UnitDAO extends BasePDODAO {
 
     public function createUnit(Unit $unit) : void {
         $sql = "INSERT INTO units (id, name, cost, origin, url_img) VALUE (:id, :name, :cost, :origin, :url_img)";
+        if ($this->getById($unit->getId()) != null) {
+            $sql = "UPDATE TABLE units SET name=:name, cost=:cost, origin=:origin, url_img=:url_img WHERE id=:id";
+        }
+
         $query = $this->execRequest($sql, ["id" => $unit->getId(),
                                            "name" => $unit->getName(),
                                            "cost" => $unit->getCost(),
@@ -42,6 +46,18 @@ class UnitDAO extends BasePDODAO {
                                            "url_img" => $unit->getUrlImg()]);
         if ($query == false) {
             throw new Exception("Erreur lors de la création de l'unité dans la base de donnée");
+        }
+    }
+
+    public function deleteUnit(string $id) : void {
+        $sql = "DELETE FROM units WHERE id = :id";
+        $query = false;
+        if ($this->getById($id) != null) {
+            $query = $this->execRequest($sql, ["id" => $id]);
+        }
+
+        if ($query == false) {
+            throw new Exception("Erreur lors de la supression de l'unité dans la base de donnée");
         }
     }
 }

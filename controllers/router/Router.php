@@ -47,17 +47,17 @@ class Router {
     }
 
     public function routing($get=[], $post=[]) : void {
-        if (isset($get[$this->action_key])) {
-            $method = "GET";
-            if (!empty($post)) {
-                $method = "POST";
-            }
+        $method = "GET";
+        if (!empty($post)) {
+            $method = "POST";
+        }
 
+        if (isset($get[$this->action_key])) {
             $route = $this->getRoute($this->route_list, $get[$this->action_key]);
 
             if ($get[$this->action_key] == "del-unit") { //delete à priori ...
                 $route = $this->route_list["index"];
-                $route->action(["del_unit" => true], $method);
+                $route->action(["del_unit" => true, "id" => $get["id"] ?? []], $method);
             } elseif ($get[$this->action_key] == "edit-unit") { //edit-unit ou update ...
                 $route = $this->route_list["add-unit"];
                 $route->action(["id" => $get["id"]] ?? [], $method);
@@ -65,7 +65,7 @@ class Router {
                 $route->action($post, $method);
             }
         } else {
-            $this->route_list["index"]->action();
+            $this->route_list["index"]->action($post, $method);
         }
     }
 

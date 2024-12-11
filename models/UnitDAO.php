@@ -11,6 +11,7 @@ class UnitDAO extends BasePDODAO {
         $query = $this->execRequest($sql);
         foreach ($query as $row) {
             $unit = new Unit($row["name"], $row["cost"], $row["origin"], $row["url_img"]);
+            $unit->setId($row["id"]);
             $units[] = $unit;
         }
         return $units;
@@ -24,7 +25,9 @@ class UnitDAO extends BasePDODAO {
                 return null;
             } elseif ($query->rowCount() == 1) {
                 $row = $query->fetch();
-                return new Unit($row["name"], $row["cost"], $row["origin"], $row["url_img"]);
+                $unit = new Unit($row["name"], $row["cost"], $row["origin"], $row["url_img"]);
+                $unit->setId($row["id"]);
+                return $unit;
             } else {
                 return null;
             }

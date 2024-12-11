@@ -91,7 +91,7 @@ On va donc préparer la suppression pour *clean up* un peu tout cela.
 
 Voici en résumé notre fonctionnalité :
 
-```
+```mermaid
 sequenceDiagram  
   participant P as Page
   participant R as RouteDelUnit
@@ -153,7 +153,7 @@ Puis passez ce paramètre à la fonction 'generer'.
 
 **2.2 :** Marre de supprimer tous ces unités tests ? Peut-être qu'il est temps de voir pour mettre à jour nos données. Voici le process que l'on voudrait :
 
-```
+```mermaid
 flowchart LR
   A(Click sur le bouton edit) --> B(Affiche un formulaire pré rempli) 
   B --> C(Modifie les données) 

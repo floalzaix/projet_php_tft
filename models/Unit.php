@@ -10,7 +10,7 @@ class Unit {
     private string $url_img;
 
     public function __construct(string $name, int $cost, string $origin, string $url_img) {
-        $this->setId();
+        $this->createId();
         $this->name = $name;
         $this->cost = $cost;
         $this->origin = $origin;
@@ -88,8 +88,12 @@ class Unit {
         return $this->url_img;
     }
 
-    public function setId(): void {
-        $this->id = uniqid("unit_");
+    public function createID() : void {
+        $this->setId(uniqid("unit_"));
+    }
+
+    public function setId(string $id) : void {
+        $this->id = $id;
     }
     public function setName(string $name): void {
         $this->name = $name;

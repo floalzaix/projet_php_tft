@@ -57,10 +57,10 @@ class Router {
 
             if ($get[$this->action_key] == "del-unit") { //delete à priori ...
                 $route = $this->route_list["index"];
-                $route->action(["del_unit" => true, "id" => $get["id"] ?? []], $method);
+                $route->action(["del_unit" => true, "id" => $get["id"] ?? null], $method);
             } elseif ($get[$this->action_key] == "edit-unit") { //edit-unit ou update ...
                 $route = $this->route_list["add-unit"];
-                $route->action(["id" => $get["id"]] ?? [], $method);
+                $route->action(["id" => $get["id"] ?? null], $method);
             } else {
                 $route->action($post, $method);
             }

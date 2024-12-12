@@ -14,24 +14,32 @@ class RouteIndex extends Route {
 
     public function get($params = []) : void {
         if (isset($params["del_unit"]) && $params["del_unit"]) {
-            $this->controller->index(true, $params["id"]);
+            $this->controller->index(["del_unit" => true, "id" => $params["id"] ?? null]);
         } else {
-            $this->controller->index();
+            $this->controller->index(["message" => $params["message"] ?? ""]);
         }
     }
 
     public function post($params = []) : void {
-        $message = "Unité supprimée avec succés";
+        $message = "";
         try {
-            if (isset($params["confirm_button"])) {
+            if (isset($params["edit_unit"])) {
+                $message = "Unité modifié avec succés";
+                $this->controller->editUnit(
+                    parent::getParam($params, "name", false),
+                    parent::getParam($params, "cost", false),
+                    parent::getParam($params, "origin", false),
+                    parent::getParam($params, "url_img", false),
+                    $params["id"] ?? null
+                );
+            } elseif (isset($params["edit_unit"]) && isset($params["confirm_button"])) {
+                $message = "Unité supprimée avec succés";
                 $this->controller->delUnit($params["id"]);
-            } else {
-                $message = "";
             }
         } catch (Exception $error) {
             $message = $error->getMessage();
         }
-        $this->controller->index(true, "", $message);
+        $this->controller->index(["message" => $message]);
     }
 }
 

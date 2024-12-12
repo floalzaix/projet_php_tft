@@ -19,7 +19,7 @@ abstract class Route {
         if (isset($array[$paramName])) {
             if(!$canBeEmpty && empty($array[$paramName]))
                 throw new Exception("Le paramètre ".$paramName." est vide");
-            return $array[$paramName];
+            return $array[$paramName] ?? "";
         } else {
             throw new Exception("Le paramètre ".$paramName." n'est pas définit");
         }

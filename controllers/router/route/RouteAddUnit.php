@@ -14,10 +14,10 @@ class RouteAddUnit extends Route {
     }
 
     public function get($params = []) : void {
-        $this->controller->displayAddUnit();
+        $this->controller->displayAddUnit("", $params["id"] ?? null);
     }
     public function post($params = []) : void {
-        $message = "L'unité à été crée avec succés";
+        $message = "L'unité a été crée avec succés";
         try {
             $this->controller->addUnit(
                 parent::getParam($params, "name", false),
@@ -28,7 +28,7 @@ class RouteAddUnit extends Route {
         } catch (Exception $error) {
             $message = $error->getMessage();
         }
-        $this->controller->displayAddUnit($message);
+        $this->controller->displayAddUnit($message, $params["id"] ?? null);
     }
 }
 

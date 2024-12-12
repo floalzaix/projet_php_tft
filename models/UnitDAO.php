@@ -16,7 +16,7 @@ class UnitDAO extends BasePDODAO {
         }
         return $units;
     }
-    public function getById(string $id) : ?Unit {
+    public function getById(?string $id) : ?Unit {
         $sql = "SELECT * FROM units WHERE id = :id";
         $query = $this->execRequest($sql, ["id" => $id]);
         if ($query != false) {
@@ -39,7 +39,7 @@ class UnitDAO extends BasePDODAO {
     public function createUnit(Unit $unit) : void {
         $sql = "INSERT INTO units (id, name, cost, origin, url_img) VALUE (:id, :name, :cost, :origin, :url_img)";
         if ($this->getById($unit->getId()) != null) {
-            $sql = "UPDATE TABLE units SET name=:name, cost=:cost, origin=:origin, url_img=:url_img WHERE id=:id";
+            $sql = "UPDATE units SET name=:name, cost=:cost, origin=:origin, url_img=:url_img WHERE id=:id";
         }
 
         $query = $this->execRequest($sql, ["id" => $unit->getId(),

@@ -15,8 +15,9 @@ class UnitController {
         $this-> unit_dao = new UnitDAO();
     }
 
-    public function displayAddUnit(?string $message = "") : void {
-        echo $this->templates->render("add-unit", ["message" => $message]);
+    public function displayAddUnit(?string $message = "", ?string $id) : void {
+        $unit = $this->unit_dao->getById($id);
+        echo $this->templates->render("add-unit", ["message" => $message, "unit" => $unit]);
     }
 
     public function addUnit(string $name, int $cost, string $origin, string $url_img) : void {

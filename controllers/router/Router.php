@@ -8,6 +8,7 @@ use Controllers\Router\Route\RouteEr404;
 use Controllers\Router\Route\RouteIndex;
 use Controllers\Router\Route\RouteAddOrigin;
 use Controllers\Router\Route\RouteSearch;
+use Controllers\SearchController;
 use Controllers\UnitController;
 use Controllers\ErrorController;
 use Controllers\OriginController;
@@ -27,14 +28,15 @@ class Router {
         $this->ctrl_list = ["main" => new MainController(), 
                             "unit" => new UnitController(),
                             "error" => new ErrorController(),
-                            "origin" => new OriginController()];
+                            "origin" => new OriginController(),
+                            "search" => new SearchController()];
     }
 
     private function createRouteList() : void {
         $this->route_list = ["index"=> new RouteIndex($this->ctrl_list["main"]),
                              "add-unit" => new RouteAddUnit($this->ctrl_list["unit"]),
                              "add-unit-origin" => new RouteAddOrigin($this->ctrl_list["origin"]),
-                             "search" => new RouteSearch($this->ctrl_list["unit"]),
+                             "search" => new RouteSearch($this->ctrl_list["search"]),
                              "er-404" => new RouteEr404($this->ctrl_list["error"])];
     }
 

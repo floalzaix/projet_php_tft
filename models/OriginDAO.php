@@ -68,6 +68,26 @@ class OriginDAO extends BasePDODAO {
             throw new Exception("Erreur lors de la supression d'une origine en base de donnée !");
         }
     }
+
+    public function searchInOrigins(string $field) : array {
+        $origins = [];
+
+        $sql = "SELECT * FROM origins WHERE name LIKE :field";
+        $query = $this->execRequest($sql, ["field" => "%".$field."%"]);
+
+        if ($query == false) {
+            throw new Exception("Erreur lors de la recherche en BDD des origines sur la base d'un field");
+        }
+
+        foreach($query as $row) {
+            $origin = new Origin($row["name"], $row["url_img"]);
+            $origin->setId($row["id"]);
+
+            $origins[] = $origin;
+        }
+
+        return $origins;
+    }
 }
 
 ?>

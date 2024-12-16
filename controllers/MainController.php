@@ -79,10 +79,6 @@ class MainController {
 
         echo $this->templates->render("home", ["tft_set_name" => "Remix Rumble", "message" => $message, "list_units" => $list_units, "list_origins" => $list_origins]);
     }
-
-    public function displaySearch() : void {
-        echo $this->templates->render("search");
-    }
 }
 
 ?>

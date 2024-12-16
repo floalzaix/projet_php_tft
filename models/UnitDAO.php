@@ -73,4 +73,25 @@ class UnitDAO extends UnitOriginsDAO {
             throw new Exception("Erreur lors de la supression de l'unité dans la base de donnée");
         }
     }
+
+    public function searchInUnits(string $field) : array {
+        $sql = "SELECT * FROM units WHERE name LIKE :field";
+        $query = $this->execRequest($sql, ["field" => "%".$field."%"]);
+
+        if ($query == false) {
+            throw new Exception("Erreur lors de la recherche en BDD d'un field");
+        }
+
+        $units = [];
+        foreach($query as $row) {
+            $unit = new Unit($row["name"], $row["cost"], $row["url_img"]);
+            $unit->setId($row["id"]);
+            $origins = $this->getOriginsOfUnit($row["id"]);
+            $unit->setOrigins($origins);
+
+            $units[] = $unit;
+        }
+
+        return $units;
+    }
 }

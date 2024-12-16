@@ -4,6 +4,10 @@
     }
 }
 
+body {
+    background-color: grey;
+}
+
 
 .unit {
     color: white;

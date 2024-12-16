@@ -10,7 +10,7 @@ class UnitDAO extends BasePDODAO {
         $sql = "SELECT * FROM units";
         $query = $this->execRequest($sql);
         foreach ($query as $row) {
-            $unit = new Unit($row["name"], $row["cost"], $row["origin"], $row["url_img"]);
+            $unit = new Unit($row["name"], $row["cost"], $row["url_img"]);
             $unit->setId($row["id"]);
             $units[] = $unit;
         }
@@ -25,7 +25,7 @@ class UnitDAO extends BasePDODAO {
                 return null;
             } elseif ($query->rowCount() == 1) {
                 $row = $query->fetch();
-                $unit = new Unit($row["name"], $row["cost"], $row["origin"], $row["url_img"]);
+                $unit = new Unit($row["name"], $row["cost"], $row["url_img"]);
                 $unit->setId($row["id"]);
                 return $unit;
             } else {
@@ -37,15 +37,14 @@ class UnitDAO extends BasePDODAO {
     }
 
     public function createUnit(Unit $unit) : void {
-        $sql = "INSERT INTO units (id, name, cost, origin, url_img) VALUE (:id, :name, :cost, :origin, :url_img)";
+        $sql = "INSERT INTO units (id, name, cost, url_img) VALUE (:id, :name, :cost, :url_img)";
         if ($this->getById($unit->getId()) != null) {
-            $sql = "UPDATE units SET name=:name, cost=:cost, origin=:origin, url_img=:url_img WHERE id=:id";
+            $sql = "UPDATE units SET name=:name, cost=:cost, url_img=:url_img WHERE id=:id";
         }
 
         $query = $this->execRequest($sql, ["id" => $unit->getId(),
                                            "name" => $unit->getName(),
                                            "cost" => $unit->getCost(),
-                                           "origin" => $unit->getOrigin(),
                                            "url_img" => $unit->getUrlImg()]);
         if ($query == false) {
             throw new Exception("Erreur lors de la création de l'unité dans la base de donnée");

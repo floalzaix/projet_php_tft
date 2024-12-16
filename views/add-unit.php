@@ -10,7 +10,7 @@
         <br />
         <input type="range" id="cost" name="cost" max="5" min="1" value="<?= $unit->getCost(); ?>" />
         <br />
-        <input type="text" id="origin" name="origin" maxlength="100" value="<?= $unit->getOrigin(); ?>" />
+        <input type="text" id="origin" name="origin" maxlength="100" value="<?= $unit->getOrigins(true); ?>" />
         <br />
         <input type="text" id="url_img" name="url_img"  maxlength="2084" value=<?= $unit->getUrlImg(); ?> />
         <input type="hidden" id="id" name="id" value="<?= $unit->getId(); ?>" />

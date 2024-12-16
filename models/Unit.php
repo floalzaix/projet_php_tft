@@ -6,14 +6,14 @@ class Unit {
     private ?string $id;
     private string $name;
     private int $cost;
-    private string $origin;
+    private array $origins;
     private string $url_img;
 
-    public function __construct(string $name, int $cost, string $origin, string $url_img) {
+    public function __construct(string $name, int $cost, string $url_img) {
         $this->createId();
         $this->name = $name;
         $this->cost = $cost;
-        $this->origin = $origin;
+        $this->origins = [];
         $this->url_img = $url_img;
     }
 
@@ -23,15 +23,13 @@ class Unit {
 
     //toString
     public function __toString(): string {
-        $origins = explode(",", $this->origin);
-        
         echo "<div class=\"unit\">";
 
             echo "<div class=\"rar_{$this->getRarity()}\" style=\"background-image: url({$this->getUrlImg()})\">";
                 echo "<div class=\"name\">".$this->name."</div>";
 
                 echo "<div class=\"origins\">";
-                    foreach ($origins as $origin) {
+                    foreach ($this->getOrigins() as $origin) {
                         echo "<div class=\"origin\">".$origin."</div>";
                     }
                 echo "</div>";
@@ -81,15 +79,15 @@ class Unit {
     public function getCost(): int {
         return $this->cost;
     }
-    public function getOrigin(): string {
-        return $this->origin;
+    public function getOrigins() : array {
+        return $this->origins;
     }
     public function getUrlImg(): string {
         return $this->url_img;
     }
 
     public function createID() : void {
-        $this->setId(uniqid("unit_"));
+        $this->id = uniqid("unit_");
     }
 
     public function setId(string $id) : void {
@@ -101,8 +99,8 @@ class Unit {
     public function setCost(int $cost): void {
         $this->cost = $cost;
     }
-    public function setOrigin(string $origin): void {
-        $this->origin = $origin;
+    public function setOrigins(array $origins): void {
+        $this->origins = $origins;
     }
     public function setUrlImg(string $url_img): void {
         $this->url_img = $url_img;

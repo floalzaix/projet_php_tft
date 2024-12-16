@@ -14,6 +14,9 @@ $this->layout('template', ['title' => 'TP TFT']);
 foreach($list_units as $unit) {
     $unit->__toString();
 }
+foreach($list_origins as $origin) {
+    $origin->__toString();
+}
 
 ?>
 

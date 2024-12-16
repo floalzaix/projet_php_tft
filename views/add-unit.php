@@ -10,7 +10,42 @@
         <br />
         <input type="range" id="cost" name="cost" max="5" min="1" value="<?= $unit->getCost(); ?>" />
         <br />
-        <input type="text" id="origin" name="origin" maxlength="100" value="<?= $unit->getOrigins(true); ?>" />
+        <select id="origin1" name="origin1">
+            <?php 
+                echo "<option value='NULL'>Vide</option>";
+                foreach($origins as $origin) {
+                    if ($origin == $unit->getOrigins()[0]) {
+                        echo "<option value='{$origin->getId()}' selected>{$origin->getName()}</option>";
+                    } else {
+                        echo "<option value='{$origin->getId()}'>{$origin->getName()}</option>";
+                    }
+                }
+            ?>
+        </select>
+        <select id="origin2" name="origin2" value="<?= ($unit->getOrigins()[1] != null) ? $unit->getOrigins()[1]->getId() : ""; ?>">
+            <?php 
+                echo "<option value='NULL'>Vide</option>";
+                foreach($origins as $origin) {
+                    if ($origin == $unit->getOrigins()[1]) {
+                        echo "<option value='{$origin->getId()}' selected>{$origin->getName()}</option>";
+                    } else {
+                        echo "<option value='{$origin->getId()}'>{$origin->getName()}</option>";
+                    }
+                }
+            ?>
+        </select>
+        <select id="origin3" name="origin3" value="<?= ($unit->getOrigins()[2] != null) ? $unit->getOrigins()[2]->getId() : ""; ?>">
+            <?php 
+                echo "<option value='NULL'>Vide</option>";
+                foreach($origins as $origin) {
+                    if ($origin == $unit->getOrigins()[2]) {
+                        echo "<option value='{$origin->getId()}' selected>{$origin->getName()}</option>";
+                    } else {
+                        echo "<option value='{$origin->getId()}'>{$origin->getName()}</option>";
+                    }
+                }
+            ?>
+        </select>
         <br />
         <input type="text" id="url_img" name="url_img"  maxlength="2084" value=<?= $unit->getUrlImg(); ?> />
         <input type="hidden" id="id" name="id" value="<?= $unit->getId(); ?>" />
@@ -22,7 +57,30 @@
         <br />
         <input type="range" id="cost" name="cost" placeholder="Coût" max="5" min="1" value="1"/>
         <br />
-        <input type="text" id="origin" name="origin" placeholder="Origine" maxlength="100" />
+        <select id="origin1" name="origin1">
+            <?php 
+                echo "<option value='NULL'>Vide</option>";
+                foreach($origins as $origin) {
+                    echo "<option value='{$origin->getId()}'>{$origin->getName()}</option>";
+                }
+            ?>
+        </select>
+        <select id="origin2" name="origin2">
+            <?php
+                echo "<option value='NULL'>Vide</option>"; 
+                foreach($origins as $origin) {
+                    echo "<option value='{$origin->getId()}'>{$origin->getName()}</option>";
+                }
+            ?>
+        </select>
+        <select id="origin3" name="origin3">
+            <?php 
+                echo "<option value='NULL'>Vide</option>";
+                foreach($origins as $origin) {
+                    echo "<option value='{$origin->getId()}'>{$origin->getName()}</option>";
+                }
+            ?>
+        </select>
         <br />
         <input type="text" id="url_img" name="url_img" placeholder="Url de l'image" maxlength="2084" />
         <br />

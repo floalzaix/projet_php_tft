@@ -13,19 +13,24 @@ class MainController {
     private $templates;
     private $unit_dao;
     private $origin_dao;
-    private $unit_origins_dao;
 
     function __construct() {
         $this->templates = new Engine("views", "php");
         $this->unit_dao = new UnitDAO();
         $this->origin_dao = new OriginDAO();
-        $this->unit_origins_dao = new UnitOriginsDAO();
     }
 
-    public function editUnit(string $name, int $cost, string $origins, string $url_img, string $id) : void {
+    public function editUnit(string $name, int $cost, array $origins, string $url_img, string $id) : void {
         $new_unit = new Unit($name, $cost, $url_img);
         $new_unit->setId($id);
-        $new_unit->setOrigins($this->unit_origins_dao->getOriginsOfUnit($id));
+        $objects_origins = [];
+        foreach($origins as $origin) {
+            if ($origin != "NULL") {
+                $object_origin = $this->origin_dao->getById($origin);
+                $objects_origins[] = $object_origin;
+            }
+        }
+        $new_unit->setOrigins($objects_origins);
         $this->unit_dao->createUnit($new_unit);
     }
 

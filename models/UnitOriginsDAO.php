@@ -7,7 +7,7 @@ use Models\Origin;
 use Exception;
 
 class UnitOriginsDAO extends BasePDODAO {
-    public function getOriginsOfUnit(string $id_unit) : array {
+    protected function getOriginsOfUnit(string $id_unit) : array {
         $sql = "SELECT * FROM units_origins uo INNER JOIN origins o ON o.id = uo.id_origin WHERE id_unit=:id_unit";
         $query = $this->execRequest($sql, ["id_unit" => $id_unit]);
 
@@ -31,13 +31,18 @@ class UnitOriginsDAO extends BasePDODAO {
         return $origins;
     }
 
-    public function addOriginsToUnit(string $id_unit, array $origins_ids) : void {
-        $sql = "INSERT INTO units_origins(id_unit, id_origin) VALUE (:id_unit, :id_origin)";
+    protected function setOriginsOfUnit(string $id_unit, array $origins_ids) : void {
+        $sql = "DELETE FROM units_origins WHERE id_unit=:id_unit";
+        $query = $this->execRequest($sql, ["id_unit" => $id_unit]);
 
+        if ($query == false) {
+            throw new Exception("Erreur lors de la supression des anciennes origines d'une unité !");
+        }
+        
         if (count($origins_ids) > 3) {
             throw new Exception("Il n'est pas possible d'ajouter plus de 3 origines à une unité.");
         }
-
+        $sql = "INSERT INTO units_origins(id_unit, id_origin) VALUE (:id_unit, :id_origin)";
         foreach ($origins_ids as $id_origin) {
             $query = $this->execRequest($sql, ["id_unit" => $id_unit, "id_origin" => $id_origin]);
             if ($query == false) {

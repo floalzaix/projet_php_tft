@@ -13,6 +13,11 @@ class Origin {
         $this->url_img = $url_img;
     }
 
+    public function incorporate() : void {
+        echo "<img class='' src='{$this->getUrlImg()}' ";
+        echo "<div>{$this->getName()}</div>";
+    }
+
     public function __toString() : string {
         echo "<div>";
 

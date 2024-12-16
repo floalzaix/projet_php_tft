@@ -4,7 +4,7 @@
 
 <h1>Ajouter/modifier une origine</h1>
 
-<form action="index.php?<?= !isset($origin) ? "" : "add-unit-origin"; ?>" method="POST">
+<form action="index.php?action=<?= isset($origin) ? "index" : "add-unit-origin"; ?>" method="POST">
     <?php if (isset($origin)) { ?>
         <input type="text" id="name" name="name" value=<?= $origin->getName() ?> maxlength="50" />
         <br />

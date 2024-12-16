@@ -27,10 +27,19 @@ class RouteIndex extends Route {
         try {
             if (isset($params["edit_unit"])) {
                 $message = "Unité modifié avec succés";
+                $origins = [
+                    parent::getParam($params, "origin1"),
+                    parent::getParam($params, "origin2"),
+                    parent::getParam($params, "origin3")
+                ];
+                if (($origins[0] == $origins[1] && $origins[1] != "NULL") || ($origins[0] == $origins[2] && $origins[2] != "NULL") || ($origins[1] == $origins[2] && $origins[2] != "NULL")) {
+                    throw new Exception("Une unité ne peut pas avoir plusieurs fois la même origine");
+                }
+
                 $this->controller->editUnit(
                     parent::getParam($params, "name", false),
                     parent::getParam($params, "cost", false),
-                    parent::getParam($params, "origin", false),
+                    $origins,
                     parent::getParam($params, "url_img", false),
                     $params["id"] ?? null
                 );

@@ -16,7 +16,7 @@ class OriginController {
     }
     
     public function displayAddUnitOrigin(array $params = []) : void {
-        $origin = $this->origin_dao->getById($params["id"] ?? null);
+        $origin = isset($params["id"]) ? $this->origin_dao->getById($params["id"]) : null;
         echo $this->templates->render("add-origin", ["message" => $params["message"] ?? "", "origin" => $origin]);
     }
 

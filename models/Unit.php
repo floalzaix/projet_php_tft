@@ -30,7 +30,7 @@ class Unit {
 
                 echo "<div class=\"origins\">";
                     foreach ($this->getOrigins() as $origin) {
-                        echo "<div class=\"origin\">".$origin."</div>";
+                        echo "<div class=\"origin\">".$origin->incorporate()."</div>";
                     }
                 echo "</div>";
 

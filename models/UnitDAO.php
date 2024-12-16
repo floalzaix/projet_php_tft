@@ -2,9 +2,10 @@
 
 namespace Models;
 
+use Models\UnitOriginsDAO;
 use Exception;
 
-class UnitDAO extends BasePDODAO {
+class UnitDAO extends UnitOriginsDAO {
     public function getAll() : array {
         $units = array();
         $sql = "SELECT * FROM units";
@@ -12,6 +13,8 @@ class UnitDAO extends BasePDODAO {
         foreach ($query as $row) {
             $unit = new Unit($row["name"], $row["cost"], $row["url_img"]);
             $unit->setId($row["id"]);
+            $origins = $this->getOriginsOfUnit($row["id"]);
+            $unit->setOrigins($origins);
             $units[] = $unit;
         }
         return $units;
@@ -27,6 +30,8 @@ class UnitDAO extends BasePDODAO {
                 $row = $query->fetch();
                 $unit = new Unit($row["name"], $row["cost"], $row["url_img"]);
                 $unit->setId($row["id"]);
+                $origins = $this->getOriginsOfUnit($row["id"]);
+                $unit->setOrigins($origins);
                 return $unit;
             } else {
                 return null;
@@ -49,6 +54,12 @@ class UnitDAO extends BasePDODAO {
         if ($query == false) {
             throw new Exception("Erreur lors de la création de l'unité dans la base de donnée");
         }
+
+        $origins_ids = [];
+        foreach($unit->getOrigins() as $origin) {
+            $origins_ids[] = $origin->getId();
+        }
+        $this->setOriginsOfUnit($unit->getId(), $origins_ids);
     }
 
     public function deleteUnit(string $id) : void {

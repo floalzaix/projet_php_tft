@@ -77,7 +77,7 @@ class MainController {
                 ";
         }
 
-        echo $this->templates->render("home", ["tft_set_name" => "Remix Rumble", "message" => $message, "list_units" => $list_units, "list_origins" => $list_origins]);
+        echo $this->templates->render("home", ["tft_set_name" => "Into the Arcane", "message" => $message, "list_units" => $list_units, "list_origins" => $list_origins]);
     }
 }
 

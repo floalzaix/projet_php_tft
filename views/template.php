@@ -11,10 +11,10 @@
             <!-- Menu -->
             <nav>
                 <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="index.php?action=add-unit">Ajouter une unité</a></li>
-                    <li><a href="index.php?action=add-unit-origin">Ajouter une origine</a></li>
-                    <li><a href="index.php?action=search">Rechercher</a></li>
+                    <li><a href="index.php">home</a></li>
+                    <li><a href="index.php?action=add-unit">ajout unités</a></li>
+                    <li><a href="index.php?action=add-unit-origin">ajout origines</a></li>
+                    <li><a href="index.php?action=search">rechercher</a></li>
                 </ul>
             </nav>
         </header>

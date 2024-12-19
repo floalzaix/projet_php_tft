@@ -9,15 +9,21 @@ $this->layout('template', ['title' => 'TP TFT']);
 
 <?= $message ?? "" ?>
 
-<?php
-
-foreach($list_units as $unit) {
-    $unit->__toString();
-}
-foreach($list_origins as $origin) {
-    $origin->__toString();
-}
-
-?>
+<div class="body_home">
+    <div class="list_units">
+        <?php
+            foreach($list_units as $unit) {
+                $unit->__toString();
+            }
+        ?>  
+    </div>
+    <div class="list_origins">
+        <?php
+            foreach ($list_origins as $origin) {
+                $origin->__toString();
+            }
+        ?>
+    </div>
+</div>
 
 

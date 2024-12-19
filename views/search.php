@@ -20,7 +20,6 @@
 
         ?>
     </select>
-    <br />
     <input type="submit" id="submit_button" name="submit_button" value="Rechercher" />
 </form>
 

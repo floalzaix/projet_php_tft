@@ -14,18 +14,20 @@ class Origin {
     }
 
     public function incorporate() : void {
-        echo "<img class='' src='{$this->getUrlImg()}' ";
-        echo "<div>{$this->getName()}</div>";
+        echo "<div class='incorporated_origin'>";
+            echo "<img class='inc_origin_img' src='{$this->getUrlImg()}' />";
+            echo "<div>{$this->getName()}</div>";
+        echo "</div>";
     }
 
     public function __toString() : string {
-        echo "<div>";
+        echo "<div class='origin'>";
 
-            echo "<img class='' src='{$this->getUrlImg()}' ";
+            echo "<img class='' src='{$this->getUrlImg()}' />";
 
-            echo "<div>{$this->getName()}</div>";
+            echo "<div class='origin_name'>{$this->getName()}</div>";
 
-            echo "<form class=\"btn_small\" action='index.php' method='GTE'>";
+            echo "<form class=\"btn_small\" action='index.php' method='GET'>";
                 echo "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"edit-origin\" />";
                 echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"{$this->getId()}\" />";
 

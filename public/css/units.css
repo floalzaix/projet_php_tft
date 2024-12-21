@@ -82,31 +82,7 @@
     justify-content: flex-end;
 }
 
-.btn_ico {
-    width: 100%;
-    height: 100%;
-}
-
 .cost_ico {
     width: 11px;
     height: 11px;
-}
-
-.btn_small {
-    all: unset;
-
-    width: 20px;
-    height: 20px;
-    
-    border-radius: 100%;
-
-    padding: 4%;
-}
-
-.btn_small:hover {
-    scale: 115%;
-}
-
-.btn_small:active {
-    scale: 60%;
 }

@@ -50,22 +50,13 @@ class Unit {
 
                 echo "<div class=\"btn_unit\">"; //Display the buttons 
 
-                    echo "<form class=\"btn_small\" action=\"index.php\" method=\"GET\">";
-                        echo "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"edit-unit\" />";
-                        echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"{$this->getId()}\" />";
-                        echo "<button type=\"submit\" id=\"btn_modif_unit\" class=\"btn_small\">";
-                            echo "<img src=\"../public/images/crayon.png\" alt=\"Modifier\" class=\"btn_ico\" />"; //The edit icon
-                        echo "</button>";
-                    echo "</form>";
-
-                    echo "<form class=\"btn_small\" action=\"index.php\" method=\"GET\">";
-                        echo "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"del-unit\" />";
-                        echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"{$this->getId()}\" />";
-
-                        echo "<button type=\"submit\" id=\"btn_delete_unit\" class=\"btn_small\">"; 
-                            echo "<img src=\"../public/images/supprimer.png\" alt=\"Modifier\" class=\"btn_ico\" />"; //The del icon
-                        echo "</button>";
-                    echo "</form>";
+                    echo "<a class='btn_small' href='index.php?action=edit-unit&id={$this->getId()}'>"; //The button
+                        echo "<img src=\"../public/images/crayon.png\" alt=\"Modifier\" class=\"btn_ico\" />"; //The edit icon
+                    echo "</a>";
+                    
+                    echo "<a class='btn_small' href='index.php?action=del-unit&id={$this->getId()}'>"; //The button
+                        echo "<img src=\"../public/images/supprimer.png\" alt=\"Modifier\" class=\"btn_ico\" />"; //The del icon
+                    echo "</a>";
 
                 echo "</div>";
                 

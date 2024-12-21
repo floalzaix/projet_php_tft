@@ -3,6 +3,7 @@
 @import url("origins.css");
 @import url("form.css");
 @import url("message.css");
+@import url("buttons.css");
 
 body, html {
     margin: 0%;

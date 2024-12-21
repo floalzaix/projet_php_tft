@@ -40,26 +40,16 @@ class Origin {
             /**
              * Display the edit button
              */
-            echo "<form class=\"btn_small\" action='index.php' method='GET'>";
-                echo "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"edit-origin\" />";
-                echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"{$this->getId()}\" />";
-
-                echo "<button type=\"submit\" id=\"btn_modif_unit\" class=\"btn_small\">";
-                    echo "<img src=\"../public/images/crayon.png\" alt=\"Modifier\" class=\"btn_ico\" />";
-                echo "</button>";
-            echo "</form>";
+            echo "<a class='btn_small' href='index.php?action=edit-origin&id={$this->getId()}'>"; //The button
+                echo "<img src=\"../public/images/crayon.png\" alt=\"Modifier\" class=\"btn_ico\" />"; //The edit icon
+            echo "</a>";
 
             /**
              * Display the del button
-             */
-            echo "<form class='btn_small' action='index.php' method='GET'>";
-                echo "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"del-origin\" />";
-                echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"{$this->getId()}\" />";
-
-                echo "<button type=\"submit\" id=\"btn_delete_unit\" class=\"btn_small\">";
-                    echo "<img src=\"../public/images/supprimer.png\" alt=\"Modifier\" class=\"btn_ico\" />";
-                echo "</button>";
-            echo "</form>";
+             */     
+            echo "<a class='btn_small' href='index.php?action=del-origin&id={$this->getId()}'>"; //The button
+                echo "<img src=\"../public/images/supprimer.png\" alt=\"Modifier\" class=\"btn_ico\" />"; //The del icon
+            echo "</a>";
 
         echo "</div>";
         return "Ceci est une l'affichage de l'origine : ".$this->name;

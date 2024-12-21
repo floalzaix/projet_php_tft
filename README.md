@@ -7,13 +7,14 @@ Premièrement j'espère que vous pouvez lire les documents correctement (que les
  - [ ] Revoir tous les namespace : début de tous les **fichiers** puis pour les def dans l'**index**
  - [x] Quand on ajoute une *unit* avec le meme nom qu'une autre on obtient deux unite avec le meme nom !
  - [x] Style avec **structure**
- - [ ] Style de la supression
+ - [x] Style de la supression
  - [ ] Gestion des messages d'erreurs avec style => helper.
  - [ ] Toutes les fonctionnalités
  - [ ] Commenter
  - [ ] Faire un READ ME
+ - [ ] Gerer la bdd
 
 ```Text
-    Bonne chance
+    Bonne chance 
 ```
 

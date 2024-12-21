@@ -68,7 +68,7 @@ class Router {
 
             /**
              * Deals with the actions that are not intended to be routes. 
-             * Basicaly, it sets the route the desired route and specifies the parameters in order to notify the route there is an action  to perform.
+             * Basicaly, it sets the desired route and specifies the parameters in order to notify the route there is an action  to perform.
             */
             if ($get[$this->action_key] == "del-unit") {                                                        //Deleting a unit
                 $route = $this->route_list["index"];

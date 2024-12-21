@@ -3,6 +3,7 @@ form {
 
     display: flex;
     flex-direction: column;
+    justify-self: center;
     gap: 30px;
 }
 @media(max-width: 625px) {

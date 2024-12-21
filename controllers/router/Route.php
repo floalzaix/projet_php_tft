@@ -15,6 +15,15 @@ abstract class Route {
         }
     }
 
+    /**
+     * Summary of getParam
+     * Used to get parameters of the post function. Tests if it exists and if it is empty, if so throws an exception.
+     * @param array $array
+     * @param string $paramName
+     * @param bool $canBeEmpty
+     * @throws \Exception
+     * @return mixed
+     */
     protected function getParam(array $array, string $paramName, bool $canBeEmpty = true) : mixed {
         if (isset($array[$paramName])) {
             if(!$canBeEmpty && empty($array[$paramName]))

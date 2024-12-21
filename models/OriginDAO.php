@@ -46,17 +46,24 @@ class OriginDAO extends BasePDODAO {
         return $origin;
     }
 
+    /**
+     * Summary of createOrigin
+     * Create an origin in db. If the given id already exists then modify its properties in the db.
+     * @param \Models\Origin $origin
+     * @throws \Exception
+     * @return void
+     */
     public function createOrigin(Origin $origin) : void {
         $sql = "INSERT INTO origins(id, name, url_img) VALUE (:id, :name, :url_img)";
         
-        if ($this->getById($origin->getId()) != null) {
+        if ($this->getById($origin->getId()) != null) { //Tests if the given id already exists
             $sql = "UPDATE origins SET name=:name, url_img=:url_img WHERE id=:id";
         }
 
         $query = $this->execRequest($sql, ["id" => $origin->getId(), "name" => $origin->getName(), "url_img" => $origin->getUrlImg()]);
 
         if ($query == false) {
-            throw new Exception("Erreur lors de la création d'une origine");
+            throw new Exception("Erreur lors de la création d'une origine en base de donnée !");
         }
     }
 

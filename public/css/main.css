@@ -2,6 +2,7 @@
 @import url("menu.css");
 @import url("origins.css");
 @import url("form.css");
+@import url("message.css");
 
 body, html {
     margin: 0%;
@@ -30,7 +31,7 @@ main {
 
 .body_home {
     width: 100%;
-    
+
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -56,5 +57,14 @@ main {
     grid-template-rows: repeat(auto-fit, 130px);
     grid-auto-rows: minmax(130px, 130px);
     justify-content: center;
+    gap: 20px;
+}
+
+/*Search page*/
+
+.body_search {
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(auto-fit, 1fr);
     gap: 20px;
 }

@@ -7,6 +7,13 @@ use Models\Origin;
 use Exception;
 
 class UnitOriginsDAO extends BasePDODAO {
+    /**
+     * Summary of getOriginsOfUnit
+     * Gets the origin linked to a unit in the units_origins table.
+     * @param string $id_unit
+     * @throws \Exception
+     * @return array
+     */
     protected function getOriginsOfUnit(string $id_unit) : array {
         $sql = "SELECT * FROM units_origins uo INNER JOIN origins o ON o.id = uo.id_origin WHERE id_unit=:id_unit";
         $query = $this->execRequest($sql, ["id_unit" => $id_unit]);
@@ -31,6 +38,14 @@ class UnitOriginsDAO extends BasePDODAO {
         return $origins;
     }
 
+    /**
+     * Summary of setOriginsOfUnit
+     * Delete all the origins linked to a unit and create new rows for the new ones. Tests if there is more than 3 origins.
+     * @param string $id_unit
+     * @param array $origins_ids
+     * @throws \Exception
+     * @return void
+     */
     protected function setOriginsOfUnit(string $id_unit, array $origins_ids) : void {
         $sql = "DELETE FROM units_origins WHERE id_unit=:id_unit";
         $query = $this->execRequest($sql, ["id_unit" => $id_unit]);

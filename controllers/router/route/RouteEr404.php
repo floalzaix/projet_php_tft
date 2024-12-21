@@ -13,7 +13,7 @@ class RouteEr404 extends Route {
     }
 
     public function get($params = []) : void {
-        $this->controller->displayError404();
+        $this->controller->displayError404(); //Display the 404 error page when the asked page does not exists 
     }
     public function post($params = []) : void {
 

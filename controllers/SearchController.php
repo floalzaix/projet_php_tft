@@ -21,11 +21,25 @@ class SearchController {
         echo $this->templates->render("search", ["message" => $params["message"] ?? "", "content" => $params["content"] ?? []]);
     }
 
+    /**
+     * Summary of searchUnits
+     * Accessed when the name field in the search list in the search page is selected. Makes the link between the model and the route to search
+     * the data base.
+     * @param string $field
+     * @return array
+     */
     public function searchUnits(string $field) : array {
         $units = $this->unit_dao->searchInUnits($field);
         return $units;
     }
 
+    /**
+     * Summary of searchOrigins
+     * Accessed when the origin field in the search list in the search page is selected. Makes the link between the model and the route to search
+     * the data base.
+     * @param string $field
+     * @return array
+     */
     public function searchOrigins(string $field) : array {
         $origins = $this->origin_dao->searchInOrigins($field);
         return $origins;

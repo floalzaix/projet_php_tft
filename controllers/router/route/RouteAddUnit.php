@@ -17,13 +17,15 @@ class RouteAddUnit extends Route {
         $this->controller->displayAddUnit("", $params["id"] ?? null);
     }
     public function post($params = []) : void {
-        $message = "L'unité a été crée avec succés";
+        //Unit creation
+        $message = "L'unité a été crée avec succés"; 
         try {
             $origins = [
                 parent::getParam($params, "origin1"),
                 parent::getParam($params, "origin2"),
                 parent::getParam($params, "origin3")
             ];
+            //Test if there is twice the same origin
             if (($origins[0] == $origins[1] && $origins[1] != "NULL") || ($origins[0] == $origins[2] && $origins[2] != "NULL") || ($origins[1] == $origins[2] && $origins[2] != "NULL")) {
                 throw new Exception("Une unité ne peut pas avoir plusieurs fois la même origine");
             }
@@ -35,7 +37,7 @@ class RouteAddUnit extends Route {
                 parent::getParam($params, "url_img", false)
             );
         } catch (Exception $error) {
-            $message = $error->getMessage();
+            $message = $error->getMessage(); //Handles exceptions to be displayed on the screen
         }
         $this->controller->displayAddUnit($message, $params["id"] ?? null);
     }

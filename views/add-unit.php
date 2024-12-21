@@ -5,7 +5,7 @@
 <h1>Ajouter/modifier une unité</h1>
 
 <form action="index.php?action=<?= isset($unit) ? "index" : "add-unit"; ?>" method="POST">
-    <?php if (isset($unit)) { ?>
+    <?php if (isset($unit)) { ?> <!-- If the page is accessed in edit mode -->
         <input type="text" id="name" name="name" maxlength="50" value="<?= $unit->getName(); ?>" />
         <input type="range" id="cost" name="cost" max="5" min="1" value="<?= $unit->getCost(); ?>" />
         <select id="origin1" name="origin1">
@@ -46,7 +46,7 @@
         </select>
         <input type="text" id="url_img" name="url_img"  maxlength="2084" value=<?= $unit->getUrlImg(); ?> />
         <input type="hidden" id="id" name="id" value="<?= $unit->getId(); ?>" />
-        <input type="hidden" id="edit_unit" name="edit_unit" value="true" />
+        <input type="hidden" id="edit_unit" name="edit_unit" value="true" /> <!-- To access the origin page in edit mode -->
         <input type="submit" id="submit_button" name="submit_button" value="Modifier" />
     <?php } else { ?>
         <input type="text" id="name" name="name" placeholder="Nom" maxlength="50" />
@@ -80,4 +80,4 @@
     <?php } ?>
 </form>
 
-<div><?= $this->e($message) ?></div>
+<div class="message"> <?= $message ?> </div>

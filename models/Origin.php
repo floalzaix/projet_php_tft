@@ -13,20 +13,33 @@ class Origin {
         $this->url_img = $url_img;
     }
 
+    /**
+     * Summary of incorporate
+     * Function to include the origin (display) in a unit in the left bottom corner.
+     * @return void
+     */
     public function incorporate() : void {
         echo "<div class='incorporated_origin'>";
-            echo "<img class='inc_origin_img' src='{$this->getUrlImg()}' />";
-            echo "<div>{$this->getName()}</div>";
+            echo "<img class='inc_origin_img' src='{$this->getUrlImg()}' />"; //Image
+            echo "<div>{$this->getName()}</div>";                             //Name
         echo "</div>";
     }
 
+    /**
+     * Summary of __toString
+     * Display origin. 
+     * @return string
+     */
     public function __toString() : string {
         echo "<div class='origin'>";
 
-            echo "<img class='' src='{$this->getUrlImg()}' />";
+            echo "<img class='' src='{$this->getUrlImg()}' />"; //Background image
 
-            echo "<div class='origin_name'>{$this->getName()}</div>";
+            echo "<div class='origin_name'>{$this->getName()}</div>"; //Display the name of the origin
 
+            /**
+             * Display the edit button
+             */
             echo "<form class=\"btn_small\" action='index.php' method='GET'>";
                 echo "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"edit-origin\" />";
                 echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"{$this->getId()}\" />";
@@ -36,6 +49,9 @@ class Origin {
                 echo "</button>";
             echo "</form>";
 
+            /**
+             * Display the del button
+             */
             echo "<form class='btn_small' action='index.php' method='GET'>";
                 echo "<input type=\"hidden\" id=\"action\" name=\"action\" value=\"del-origin\" />";
                 echo "<input type=\"hidden\" id=\"id\" name=\"id\" value=\"{$this->getId()}\" />";
@@ -49,6 +65,11 @@ class Origin {
         return "Ceci est une l'affichage de l'origine : ".$this->name;
     }
 
+    /**
+     * Summary of createId
+     * Creates a random id using uniqid.
+     * @return void
+     */
     public function createId() : void {
         $this->id = uniqid("origin_");
     }

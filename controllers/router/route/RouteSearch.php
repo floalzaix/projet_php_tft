@@ -17,8 +17,9 @@ class RouteSearch extends Route {
         $this->controller->displaySearch();
     }
     public function post($params = []) : void {
+        //Searching
         $message = "";
-        $content = [];
+        $content = []; //The content (Origins or Units) to be displayed after the search
         try {
             $search_select = parent::getParam($params, "search_select", false);
             $search_field = parent::getParam($params, "search_field", false);
@@ -31,7 +32,7 @@ class RouteSearch extends Route {
                 throw new Exception("Il faut sélectionner le champ nom ou origine pour rechercher !");
             }
         } catch(Exception $error) {
-            $message = $error->getMessage();
+            $message = $error->getMessage(); //Handles exceptions to be displayed on the screen
         }
         $this->controller->displaySearch(["message" => $message, "content" => $content]);
     }

@@ -20,6 +20,13 @@ class OriginController {
         echo $this->templates->render("add-origin", ["message" => $params["message"] ?? "", "origin" => $origin]);
     }
 
+    /**
+     * Summary of createOrigin
+     * Makes the link between the model and the route to create unit
+     * @param string $name
+     * @param string $url_img
+     * @return void
+     */
     public function createOrigin(string $name, string $url_img) : void {
         $origin = new Origin($name, $url_img);
         $this->origin_dao->createOrigin($origin);

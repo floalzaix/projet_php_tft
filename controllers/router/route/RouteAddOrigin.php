@@ -17,6 +17,7 @@ class RouteAddOrigin extends Route {
         $this->controller->displayAddUnitOrigin($params);
     }
     public function post($params = []) : void {
+        //Origin creation
         $message = "Origine crée avec succés !";
         try {
              $this->controller->createOrigin(
@@ -24,7 +25,7 @@ class RouteAddOrigin extends Route {
                 parent::getParam($params, "url_img", false)
              );
         } catch (Exception $error) {
-            $message = $error->getMessage();
+            $message = $error->getMessage(); //Handles exceptions to be displayed on the screen
         }
         $this->controller->displayAddUnitOrigin(["message" => $message]);
     }

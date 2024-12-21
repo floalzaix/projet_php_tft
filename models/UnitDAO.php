@@ -41,9 +41,16 @@ class UnitDAO extends UnitOriginsDAO {
         }
     }
 
+    /**
+     * Summary of createUnit
+     * Creates a unit in db. If the given id already exists then modify its properties.
+     * @param \Models\Unit $unit
+     * @throws \Exception
+     * @return void
+     */
     public function createUnit(Unit $unit) : void {
         $sql = "INSERT INTO units (id, name, cost, url_img) VALUE (:id, :name, :cost, :url_img)";
-        if ($this->getById($unit->getId()) != null) {
+        if ($this->getById($unit->getId()) != null) { //Tests if the given id already exists in the db.
             $sql = "UPDATE units SET name=:name, cost=:cost, url_img=:url_img WHERE id=:id";
         }
 

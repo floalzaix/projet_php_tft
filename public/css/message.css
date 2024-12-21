@@ -1,0 +1,8 @@
+.message {
+    padding: 26px;
+
+    text-align: center;
+
+    color: white;
+    font: bold 1.2rem "sytem-ui"; 
+}

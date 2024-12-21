@@ -13,8 +13,8 @@ class RouteIndex extends Route {
     }
 
     public function get($params = []) : void {
-        if (isset($params["del_unit"]) && $params["del_unit"]) {
-            $this->controller->index(["del_unit" => true, "id" => $params["id"] ?? null]);
+        if (isset($params["del_unit"]) && $params["del_unit"]) { //Tests if the page is accessed in order to delete a unit
+            $this->controller->index(["del_unit" => true, "id" => $params["id"] ?? null]); 
         } elseif (isset($params["del_origin"]) && $params["del_origin"]) {
             $this->controller->index(["del_origin" => true, "id" => $params["id"] ?? null]);
         } else {
@@ -23,9 +23,9 @@ class RouteIndex extends Route {
     }
 
     public function post($params = []) : void {
-        $message = "";
+        $message = ""; //Message that will be displayed on the screen when the submit button is pressed
         try {
-            if (isset($params["edit_unit"])) {
+            if (isset($params["edit_unit"])) { //Tests if accessed in edit unit mode
                 $message = "Unité modifié avec succés";
                 $origins = [
                     parent::getParam($params, "origin1"),
@@ -43,22 +43,22 @@ class RouteIndex extends Route {
                     parent::getParam($params, "url_img", false),
                     $params["id"] ?? null
                 );
-            } elseif (isset($params["del_unit"]) && isset($params["confirm_button"])) {
+            } elseif (isset($params["del_unit"]) && isset($params["confirm_button"])) { //Tests if accessed in delete unit mode
                 $message = "Unité supprimée avec succés";
                 $this->controller->delUnit($params["id"] ?? null);
-            } elseif (isset($params["edit_origin"])) {
+            } elseif (isset($params["edit_origin"])) { //Tests if accessed in edit origin mode
                 $message = "Origine modifié avec succés !";
                 $this->controller->editOrigin(
                     parent::getParam($params, "name", false),
                     parent::getParam($params, "url_img", false),
                     $params["id"] ?? null
                 );
-            } elseif (isset($params["del_origin"]) && isset($params["confirm_button"])) {
+            } elseif (isset($params["del_origin"]) && isset($params["confirm_button"])) { //Tests if accessed in delete origin mode
                 $message = "Origine supprimée avec succés !";
                 $this->controller->delOrigin($params["id"] ?? null);
             }
         } catch (Exception $error) {
-            $message = $error->getMessage();
+            $message = $error->getMessage(); //Gets the errors to be displayed in case of a failure of the process
         }
         $this->controller->index(["message" => $message]);
     }

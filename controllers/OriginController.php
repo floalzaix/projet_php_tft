@@ -5,6 +5,7 @@ namespace Controllers;
 use League\Plates\Engine;
 use Models\OriginDAO;
 use Models\Origin;
+use Helpers\MessageHandler;
 
 class OriginController {
     private $templates;
@@ -17,7 +18,13 @@ class OriginController {
     
     public function displayAddUnitOrigin(array $params = []) : void {
         $origin = isset($params["id"]) ? $this->origin_dao->getById($params["id"]) : null;
-        echo $this->templates->render("add-origin", ["message" => $params["message"] ?? "", "origin" => $origin]);
+
+        /**
+         * Display the message on the home page
+         */
+        MessageHandler::setMessageToPage($params["message"] ?? "", "add_origin", $params["error"] ?? false);
+
+        echo $this->templates->render("add-origin", ["origin" => $origin]);
     }
 
     /**

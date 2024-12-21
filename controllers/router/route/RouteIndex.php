@@ -24,6 +24,7 @@ class RouteIndex extends Route {
 
     public function post($params = []) : void {
         $message = ""; //Message that will be displayed on the screen when the submit button is pressed
+        $error = false; //True if the process faces a failure
         try {
             if (isset($params["edit_unit"])) { //Tests if accessed in edit unit mode
                 $message = "Unité modifié avec succés";
@@ -57,10 +58,11 @@ class RouteIndex extends Route {
                 $message = "Origine supprimée avec succés !";
                 $this->controller->delOrigin($params["id"] ?? null);
             }
-        } catch (Exception $error) {
-            $message = $error->getMessage(); //Gets the errors to be displayed in case of a failure of the process
+        } catch (Exception $err) {
+            $message = $err->getMessage(); //Gets the errors to be displayed in case of a failure of the process
+            $error = true;
         }
-        $this->controller->index(["message" => $message]);
+        $this->controller->index(["message" => $message, "error" => $error]);
     }
 }
 

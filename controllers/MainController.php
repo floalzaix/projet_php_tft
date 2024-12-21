@@ -7,7 +7,7 @@ use Models\OriginDAO;
 use Models\UnitDAO;
 use Models\Unit;
 use Models\Origin;
-use Models\UnitOriginsDAO;
+use Helpers\MessageHandler;
 
 class MainController {
     private $templates;
@@ -92,7 +92,7 @@ class MainController {
                     <form action='index.php' method='POST'>
                         <input type='hidden' id='id' name='id' value=".($params['id'] ?? null)." />
                         <input type='hidden' id='del_unit' name='del_unit' value='true' />                  <!-- To access the home page in del mode -->
-                        <p>Etes-vous sur de vouloir supprimer l'unité</p>
+                        <p>Etes-vous sur de vouloir supprimer l'unité ?</p>
                         <input type='submit' id='submit_button' name='confirm_button' value='Confirmer' />
                         <input type='submit' id='submit_button' name='cancel_button' value='Annuler' />
                     </form> 
@@ -104,14 +104,19 @@ class MainController {
                     <form action='index.php' method='POST'>
                         <input type='hidden' id='id' name='id' value=".($params['id'] ?? null)." />
                         <input type='hidden' id='del_origin' name='del_origin' value='true' />              <!-- To access the home page in del mode -->
-                        <p>Etes-vous sur de vouloir supprimer l'origine</p>
+                        <p>Etes-vous sur de vouloir supprimer l'origine ?</p>
                         <input type='submit' id='submit_button' name='confirm_button' value='Confirmer' />
                         <input type='submit' id='submit_button' name='cancel_button' value='Annuler' />
                     </form> 
                 ";
         }
 
-        echo $this->templates->render("home", ["tft_set_name" => "Into the Arcane", "message" => $message, "list_units" => $list_units, "list_origins" => $list_origins]);
+        /**
+         * Display the message on the home page
+         */
+        MessageHandler::setMessageToPage($message, "home", $params["error"] ?? false);
+
+        echo $this->templates->render("home", ["tft_set_name" => "Into the Arcane", "list_units" => $list_units, "list_origins" => $list_origins]);
     }
 }
 

@@ -19,6 +19,7 @@ class RouteAddOrigin extends Route {
     public function post($params = []) : void {
         //Origin creation
         $message = "Origine crée avec succés !";
+        $error = false; //True if the process faces a failure
         try {
              $this->controller->createOrigin(
                 parent::getParam($params, "name", false),
@@ -26,8 +27,9 @@ class RouteAddOrigin extends Route {
              );
         } catch (Exception $error) {
             $message = $error->getMessage(); //Handles exceptions to be displayed on the screen
+            $error = true;
         }
-        $this->controller->displayAddUnitOrigin(["message" => $message]);
+        $this->controller->displayAddUnitOrigin(["message" => $message, "error" => $error]);
     }
 }
 

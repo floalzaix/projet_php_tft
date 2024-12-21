@@ -14,11 +14,12 @@ class RouteAddUnit extends Route {
     }
 
     public function get($params = []) : void {
-        $this->controller->displayAddUnit("", $params["id"] ?? null);
+        $this->controller->displayAddUnit(["id" => $params["id"] ?? null]);
     }
     public function post($params = []) : void {
         //Unit creation
         $message = "L'unité a été crée avec succés"; 
+        $error = false; //True if the process faces a failure
         try {
             $origins = [
                 parent::getParam($params, "origin1"),
@@ -36,10 +37,11 @@ class RouteAddUnit extends Route {
                 $origins,
                 parent::getParam($params, "url_img", false)
             );
-        } catch (Exception $error) {
-            $message = $error->getMessage(); //Handles exceptions to be displayed on the screen
+        } catch (Exception $err) {
+            $message = $err->getMessage(); //Handles exceptions to be displayed on the screen
+            $error = true;
         }
-        $this->controller->displayAddUnit($message, $params["id"] ?? null);
+        $this->controller->displayAddUnit(["message" => $message, "error" => $error, "id" => $params["id"] ?? null]);
     }
 }
 

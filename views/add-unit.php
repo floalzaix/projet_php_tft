@@ -1,5 +1,7 @@
 <?php
     $this->layout('template', ['title' => 'TP TFT']);
+
+    use Helpers\MessageHandler;
 ?>
 
 <h1>Ajouter/modifier une unité</h1>
@@ -80,4 +82,4 @@
     <?php } ?>
 </form>
 
-<div class="message"> <?= $message ?> </div>
+<?php MessageHandler::displayMessage("add_unit") ?>

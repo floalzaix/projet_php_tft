@@ -6,6 +6,7 @@ use League\Plates\Engine;
 use Models\Unit;
 use Models\UnitDAO;
 use Models\OriginDAO;
+use Helpers\MessageHandler;
 
 class UnitController {
     private $templates;
@@ -18,10 +19,16 @@ class UnitController {
         $this->origins_dao = new OriginDAO();
     }
 
-    public function displayAddUnit(?string $message = "", ?string $id) : void {
-        $unit = $this->unit_dao->getById($id); //If accessed in edit mode gets the unit form the db to display its parameters.
+    public function displayAddUnit($params = []) : void {
+        $unit = $this->unit_dao->getById($params["id"] ?? null); //If accessed in edit mode gets the unit form the db to display its parameters.
         $origins = $this->origins_dao->getAll();
-        echo $this->templates->render("add-unit", ["message" => $message, "unit" => $unit, "origins" => $origins]);
+
+        /**
+         * Display the message on the add_unit page
+         */
+        MessageHandler::setMessageToPage($params["message"] ?? "", "add_unit", $params["error"] ?? false);
+
+        echo $this->templates->render("add-unit", ["unit" => $unit, "origins" => $origins]);
     }
 
     /**

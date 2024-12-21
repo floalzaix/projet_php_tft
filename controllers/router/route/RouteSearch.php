@@ -19,6 +19,7 @@ class RouteSearch extends Route {
     public function post($params = []) : void {
         //Searching
         $message = "";
+        $error = false; //True if the process faces a failure
         $content = []; //The content (Origins or Units) to be displayed after the search
         try {
             $search_select = parent::getParam($params, "search_select", false);
@@ -33,8 +34,9 @@ class RouteSearch extends Route {
             }
         } catch(Exception $error) {
             $message = $error->getMessage(); //Handles exceptions to be displayed on the screen
+            $error = true;
         }
-        $this->controller->displaySearch(["message" => $message, "content" => $content]);
+        $this->controller->displaySearch(["message" => $message, "error" => $error, "content" => $content]);
     }
 }
 

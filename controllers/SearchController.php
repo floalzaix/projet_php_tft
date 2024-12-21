@@ -5,6 +5,7 @@ namespace Controllers;
 use League\PLates\Engine;
 use Models\UnitDAO;
 use Models\OriginDAO;
+use Helpers\MessageHandler;
 
 class SearchController {
     private $templates;
@@ -18,7 +19,12 @@ class SearchController {
     }
 
     public function displaySearch($params = []) : void {
-        echo $this->templates->render("search", ["message" => $params["message"] ?? "", "content" => $params["content"] ?? []]);
+        /**
+         * Display the message on the home page
+         */
+        MessageHandler::setMessageToPage($params["message"] ?? "", "search", $params["error"] ?? false);
+        
+        echo $this->templates->render("search", ["content" => $params["content"] ?? []]);
     }
 
     /**

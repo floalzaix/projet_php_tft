@@ -1,5 +1,7 @@
 <?php
     $this->layout('template', ['title' => 'TP TFT']);
+
+    use Helpers\MessageHandler;
 ?>
 
 <h1>Ajouter/modifier une origine</h1>
@@ -18,4 +20,5 @@
     <?php } ?>
 </form>
 
-<div class="message"> <?= $message ?> </div>
+
+<?php MessageHandler::displayMessage("add_origin") ?>

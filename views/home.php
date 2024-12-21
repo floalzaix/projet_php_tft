@@ -2,12 +2,13 @@
     
 $this->layout('template', ['title' => 'TP TFT']);
 
+use Helpers\MessageHandler;
 
 ?>
 
 <h1>TFT - Set <?= $this->e($tft_set_name) ?></h1>
 
-<div class="message"> <?= $message ?? "" ?> </div>
+<?php MessageHandler::displayMessage("home"); //Gets the messages sets within the MainController index ?>
 
 <div class="body_home">
     <div class="list_units">

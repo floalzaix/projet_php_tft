@@ -8,7 +8,10 @@ Premièrement j'espère que vous pouvez lire les documents correctement (que les
  - [x] Quand on ajoute une *unit* avec le meme nom qu'une autre on obtient deux unite avec le meme nom !
  - [x] Style avec **structure**
  - [x] Style de la supression
- - [ ] Gestion des messages d'erreurs avec style => helper.
+ - [ ] Style des tailles de texte qui débordent
+ - [ ] Revoir la gestion des erreurs try catch pour les modification origin et add
+ - [x] Gestion des messages d'erreurs avec style => helper.
+ - [ ] Importation du autoloader en static pas d'instanciation ?
  - [ ] Toutes les fonctionnalités
  - [ ] Commenter
  - [ ] Faire un READ ME

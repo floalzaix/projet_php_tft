@@ -1,5 +1,6 @@
 <?php
     use Models\Unit;
+    use Helpers\MessageHandler;
 
     $this->layout('template', ['title' => 'TP TFT']);
 
@@ -24,7 +25,7 @@
         <input type="submit" id="submit_button" name="submit_button" value="Rechercher" />
     </form>
 
-    <div class="message"> <?= $message ?> </div>
+    <?php MessageHandler::displayMessage("search") ?>
      
     <?php if (!empty($content) && get_class($content[0]) == "Models\Unit") {?> 
         <div class="list_units">

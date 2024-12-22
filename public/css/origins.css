@@ -1,15 +1,25 @@
 .origin {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
     align-items: center;
+    justify-items: center;
 
     background-color: rgb(21, 23, 21);
     border-radius: 12px;
 }
 
 .origin_name {
+    max-width: 96%;
+    justify-self: start;
+
     color: white;
     font: bold 1.4em "Copperplate", "Copperplate Gothic", "Garamont", serif;
+    overflow: scroll;
+}
+.origin_img {
+    max-width: 40px;
+
+    filter: brightness(0) invert(1);
 }
 
 /*Incorporated origin*/
@@ -20,5 +30,8 @@
     align-items: center;
 }
 .inc_origin_img {
+    max-width: 20px;
     margin-right: 6px;
+
+    filter: brightness(0) invert(1);
 }

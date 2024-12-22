@@ -19,6 +19,7 @@
     grid-template-areas:
         "name btn"
         "origins cost";
+    grid-template-columns: 2fr 1fr;
 
     align-items: end;
 
@@ -52,13 +53,16 @@
     grid-area: name;
     align-self: start;
 
-    font: bold 1.4em "Copperplate", "Copperplate Gothic", "Garamont", serif;
+    font: bold 1.3em "Copperplate", "Copperplate Gothic", "Garamont", serif;
+    overflow: scroll;
 }
 
 .origins {
     grid-area: origins;
 
-    font: italic 1em "Copperplate", "Copperplate Gothic", "Garamont", serif;
+    font: italic 0.6em "Copperplate", "Copperplate Gothic", "Garamont", serif;
+    white-space: nowrap;
+    overflow: scroll;
 }
 
 .origin {
@@ -80,6 +84,7 @@
 
     display: flex;
     justify-content: flex-end;
+
 }
 
 .cost_ico {

@@ -33,7 +33,7 @@ class Origin {
     public function __toString() : string {
         echo "<div class='origin'>";
 
-            echo "<img class='' src='{$this->getUrlImg()}' />"; //Background image
+            echo "<img class='origin_img' src='{$this->getUrlImg()}' />"; //Background image
 
             echo "<div class='origin_name'>{$this->getName()}</div>"; //Display the name of the origin
 

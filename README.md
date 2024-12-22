@@ -1,27 +1,18 @@
-# projet_php_tft
+# Projet TFT 
 
-Premièrement j'espère que vous pouvez lire les documents correctement (que les espaces des commentaires n'est pas faient n'importe quoi).
+Avancement : TP 5 Fini
 
-### Check list
+> J'utilise VS Code pour l'éxecution du script avec le serveur de développement inclut => 
+> 
+>   php -S localhost:4000
 
- - [x] Revoir tous les namespace : début de tous les **fichiers** puis pour les def dans l'**index**
- - [x] Quand on ajoute une *unit* avec le meme nom qu'une autre on obtient deux unite avec le meme nom !
- - [x] Style avec **structure**
- - [x] Style de la supression
- - [x] Style des tailles de texte qui débordent
- - [x] Probleme des espace lors de la modification d'une origine
- - [x] Revoir la gestion des erreurs try catch pour les modification origin et add
- - [x] Gestion des messages d'erreurs avec style => helper.
- - [x] Importation du autoloader en static pas d'instanciation ?
- - [ ] Ajouter toutes le unites et origines du set 13
- - [ ] Toutes les fonctionnalités
- - [x] Commenter
- - [ ] Faire un READ ME
- - [ ] Gerer la bdd
+> Configurer l'accès à la base de donnée =>
+>
+>   Créer un fichier **dev.ini** dans le dossier config en s'inspirant de l'exemple *dev_sample.ini*
+>
+>   Créer les tables avec le fichier **bdd/create_tables.sql**
+>   Insérer les donnée des tables avec le reste des requêtes disponibles dans le dossier **bdd**
 
-```Text
-    Bonne chance 
-```
+Remarque : j'ai essayé de faire un helper pour la gestion des messages mais à la base j'avais respecté le fait de transmettre le message à la view en paramètre.
 
-> Bien specifier que gestion message essai d'un helper mais a la base passer param
-
+Si vous rencontrez des difficulté à faire fonctionner le site je l'aurais certainement hébergé sur OnRender avec un nom de domaine => floal.fr

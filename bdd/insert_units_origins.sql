@@ -83,3 +83,5 @@ INSERT INTO units_origins(id_unit, id_origin) VALUES ('unit_676806f6236f3', 'ori
 INSERT INTO units_origins(id_unit, id_origin) VALUES ('unit_676806f59281a', 'origin_6767ed2b94dda');
 INSERT INTO units_origins(id_unit, id_origin) VALUES ('unit_676806f59281a', 'origin_6767ed2b94df8');
 INSERT INTO units_origins(id_unit, id_origin) VALUES ('unit_676806f59281a', 'origin_6767ed2b94dcm');
+INSERT INTO units_origins(id_unit, id_origin) VALUES ('unit_676806f586f2e', 'origin_6767ed2b94dda');
+INSERT INTO units_origins(id_unit, id_origin) VALUES ('unit_676806f59de7e', 'origin_6767ed2b94dk5');

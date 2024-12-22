@@ -1,6 +1,7 @@
     INSERT INTO origins(id, name, url_img) VALUES ('origin_6767ed2b94dce', 'Ambusher', './public/images/tft_origins/ambusher.png');
     INSERT INTO origins(id, name, url_img) VALUES ('origin_6767ed2b94dd8', 'Artillerist', './public/images/tft_origins/artillerist.png');
     INSERT INTO origins(id, name, url_img) VALUES ('origin_6767ed2b94dd9', 'Automata', './public/images/tft_origins/automata.png');
+    INSERT INTO origins(id, name, url_img) VALUES ('origin_6767ed2b94dk5', 'Academy', './public/images/tft_origins/automata.png');
     INSERT INTO origins(id, name, url_img) VALUES ('origin_6767ed2b94dda', 'Blackrose', './public/images/tft_origins/blackrose.png');
     INSERT INTO origins(id, name, url_img) VALUES ('origin_6767ed2b94dcm', 'Bruiser', './public/images/tft_origins/ambusher.png');
     INSERT INTO origins(id, name, url_img) VALUES ('origin_6767ed2b94ddb', 'Chem-baron', './public/images/tft_origins/chem-baron.png');

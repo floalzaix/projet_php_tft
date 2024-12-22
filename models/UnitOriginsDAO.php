@@ -57,7 +57,7 @@ class UnitOriginsDAO extends BasePDODAO {
         if (count($origins_ids) > 3) {
             throw new Exception("Il n'est pas possible d'ajouter plus de 3 origines à une unité.");
         }
-        $sql = "INSERT INTO units_origins(id_unit, id_origin) VALUE (:id_unit, :id_origin)";
+        $sql = "INSERT INTO units_origins(id_unit, id_origin) VALUES (:id_unit, :id_origin)";
         foreach ($origins_ids as $id_origin) {
             $query = $this->execRequest($sql, ["id_unit" => $id_unit, "id_origin" => $id_origin]);
             if ($query == false) {

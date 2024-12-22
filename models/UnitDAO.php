@@ -49,7 +49,7 @@ class UnitDAO extends UnitOriginsDAO {
      * @return void
      */
     public function createUnit(Unit $unit) : void {
-        $sql = "INSERT INTO units (id, name, cost, url_img) VALUE (:id, :name, :cost, :url_img)";
+        $sql = "INSERT INTO units (id, name, cost, url_img) VALUES (:id, :name, :cost, :url_img)";
         if ($this->getById($unit->getId()) != null) { //Tests if the given id already exists in the db.
             $sql = "UPDATE units SET name=:name, cost=:cost, url_img=:url_img WHERE id=:id";
         }

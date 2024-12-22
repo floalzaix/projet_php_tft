@@ -54,7 +54,7 @@ class OriginDAO extends BasePDODAO {
      * @return void
      */
     public function createOrigin(Origin $origin) : void {
-        $sql = "INSERT INTO origins(id, name, url_img) VALUE (:id, :name, :url_img)";
+        $sql = "INSERT INTO origins(id, name, url_img) VALUES (:id, :name, :url_img)";
         
         if ($this->getById($origin->getId()) != null) { //Tests if the given id already exists
             $sql = "UPDATE origins SET name=:name, url_img=:url_img WHERE id=:id";
